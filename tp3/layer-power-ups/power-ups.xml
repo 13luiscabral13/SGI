@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<yaf> 
+
+	<!-- Credits of the original file go to Group 1, class 1 of course LAIG school year 2013/2014, FEUP, University of Porto -->
+	
+    <globals background="0 0 0 1" ambient="00 00 00 1" /> 
+
+    <fog color="1.0 1.0 1.0 1.0" near="0.0" far="100.0" />
+
+    <cameras initial="cam1" > 
+        <perspective id="cam1" 
+            angle="60" 
+            near="0.1" 
+            far="1000" 
+            location="15 15 15" 
+            target="0 0.0 0" /> 
+
+        <orthogonal id="cam2"
+            near="-50"
+            far="100"
+            location="0 0 20"
+            target="0 0 0"
+            left="-5"
+            right="5"
+            bottom="-5"
+            top="5" />
+    </cameras> 
+
+    <!-- bloco de texturas. Este bloco tem de existir mas pode estar vazio, se nao forem usadas texturas --> 
+    <textures>
+        <texture id="canTex" filepath="layer-power-ups/textures/turbo.png"/>
+        <texture id="sprayTex" filepath="layer-power-ups/textures/spray.png"/>
+        <texture id="shieldTex" filepath="layer-power-ups/textures/shield.png"/>
+        <texture id="madeiraTex" filepath="layer-power-ups/textures/madeira.jpg"/>
+        <texture id="ironTex" filepath="layer-power-ups/textures/iron.jpg"/>
+        <texture id="madeira_azulTex" filepath="layer-power-ups/textures/madeira_azul.jpg"/>
+        <texture id="maxcanTex" filepath="layer-power-ups/textures/maxturbo.png"/>
+    </textures> 
+
+    <materials> 
+        <material id="ironApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1 1 1 1"
+            specular="0 0 0 0"
+            shininess="30"
+            textureref="ironTex"
+            texlength_s="1"
+            texlength_t="1"
+            shading = "flat" />
+        <material id="madeiraApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1 1 1 1"
+            specular="0 0 0 0"
+            shininess="30"
+            textureref="madeiraTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="madeiraAzulApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1.0 1.0 1.0 1.0"
+            specular="0 0 0 0"
+            shininess="30"
+            textureref="madeira_azulTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="canApp" 
+            emissive="0.0 0.0 0.0 1" 
+            color="1.0 1.0 1.0 1.0"  
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="canTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="topApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1 1 1 1"
+            specular="0 0 0 0"
+            shininess="30"
+            shading = "flat" />
+        <material id="sprayApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1 1 1 1"
+            specular="0 0 0 0"
+            shininess="30"
+            textureref="sprayTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="shieldApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1 1 1 1"
+            specular="0 0 0 0"
+            shininess="30"
+            textureref="shieldTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="maxTurboApp"
+            emissive="0.0 0.0 0.0 1"
+            color="1 1 1 1"
+            specular="0 0 0 0"
+            shininess="30"
+            textureref="maxcanTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+    </materials> 
+
+    <graph rootid="scene"> 
+		
+		<node id="scene"> 
+            <children> 
+                <noderef id="maxTurbo" />
+                <noderef id="turboCan" />
+                <noderef id="shield" />
+            </children> 
+        </node>
+        <node id="bigTurbo">
+
+
+            <children>  
+                <noderef id="canTop" />
+                <noderef id="canBase" />
+                <noderef id="canSprayer" />
+            </children> 
+        </node>
+        <node id="smallTurbo">
+            <transforms>
+                <scale value3="0.75 0.75 0.75"/>
+            </transforms>
+            <children>
+                <noderef id="canTop" />
+                <noderef id="canBase" />
+                <noderef id="canSprayer" />
+          </children>
+        </node>
+        <node id="smallTurbo1">
+            <transforms>
+                <translate value3="-0.35 0 0"/>
+            </transforms>
+            <children>
+                <noderef id="smallTurbo" />
+            </children>
+        </node>
+        <node id="smallTurbo2">
+        
+            <transforms>
+                <translate value3="0.35 0 0"/>
+            </transforms>
+            <children>
+                <noderef id="smallTurbo" />
+            </children>
+        </node>
+        <node id="maxTurbo" raio="0.6">
+            <transforms>
+                <translate value3="0 0.9 0"/>
+            </transforms>
+            <materialref id="maxTurboApp" />
+            <children>
+                <noderef id="bigTurbo" />
+                <noderef id="smallTurbo1" />
+                <noderef id="smallTurbo2" />
+            </children>
+        </node>
+        <node id="canBase">
+            <children>
+                <primitive>           
+				    <cylinder base="0.2" top="0.2" height="0.8" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id="canTop">
+            <transforms>
+                <translate value3="0 0.45 0"/>
+            </transforms>
+            <materialref id="topApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.175" top="0.125" height="0.1" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id="canSprayer">
+            <transforms>
+                <translate value3="0 0.53 0"/>
+            </transforms>
+            <materialref id="sprayApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.05" top="0.05" height="0.09" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id="turboCan" raio="0.3">
+            <transforms>
+                <translate value3="0 0.9 0"/>
+            </transforms>
+            <materialref id="canApp" />
+
+            <children>  
+                <noderef id="canTop" />
+                <noderef id="canBase" />
+                <noderef id="canSprayer" />
+            </children> 
+        </node>
+        <node id="exteriorShield">
+            <materialref id="ironApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.35" top="0.35" height="0.025" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id="outerShield">
+            <children>
+                <primitive>
+                    <cylinder base="0.3" top="0.3" height="0.05" slices="32" stacks="32" />
+                </primitive>
+                <noderef id="exteriorShield" />
+            </children>
+        </node>
+        <node id="screwsHolder">
+            <materialref id="ironApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.15" top="0.15" height="0.08" slices="32" stacks="32" />  
+                </primitive>
+                <noderef id="screw1" />
+                <noderef id="screw2" />
+                <noderef id="screw3" />
+                <noderef id="screw4" />
+            </children>
+
+        </node>
+        <node id="screw">
+            <children>
+                <primitive>
+                    <cylinder  base="0.0125" top="0.0125" height="0.09" slices="32" stacks="32"  />
+                </primitive>
+            </children>
+        </node>
+        <node id="screw1">
+            <transforms>
+                <translate value3="0.1125 0 0"/>
+            </transforms>
+            <children>
+                <noderef id="screw" />
+            </children>
+        </node>
+        <node id="screw2">
+            <transforms>
+                <translate value3="-0.1125 0 0"/>
+            </transforms>
+            <children>
+                <noderef id="screw" />
+            </children>
+        </node>
+        <node id="screw3">
+            <transforms>
+                <translate value3="0 0 0.1125"/>
+            </transforms>
+            <children>
+                <noderef id="screw" />
+            </children>
+        </node>
+        <node id="screw4">
+            <transforms>
+                <translate value3="0 0 -0.1125"/>
+            </transforms>
+            <children>
+                <noderef id="screw" />
+            </children>
+        </node>
+        <node id="innerShield">
+        <materialref id="madeiraApp" />
+            <children>
+                <primitive>
+                    <sphere radius="0.1" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id="shield" raio="0.35">
+            <transforms>
+                <translate value3="0 0.9 0"/>
+                <rotate value3="90 0 0"/>
+            </transforms>
+            <materialref id="madeiraAzulApp" />
+            <children>
+                <noderef id="outerShield" />
+                <noderef id="innerShield" />
+                <noderef id="screwsHolder" />
+            </children>
+        </node>
+    </graph> 
+</yaf> 

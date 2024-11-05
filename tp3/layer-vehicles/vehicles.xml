@@ -1,0 +1,1649 @@
+<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<yaf> 
+
+	<!-- Credits of the original file go to Group 1, class 1 of course LAIG school year 2013/2014, FEUP, University of Porto -->
+	
+    <globals background="0 0 0 1" ambient="00 00 00 1" /> 
+
+    <fog color="1.0 1.0 1.0 1.0" near="0.0" far="100.0" />
+
+    <cameras initial="cam1" > 
+        <perspective id="cam1" 
+            angle="60" 
+            near="0.1" 
+            far="1000" 
+            location="15 15 15" 
+            target="0 0.0 0" /> 
+
+        <orthogonal id="cam2"
+            near="-50"
+            far="100"
+            location="0 0 20"
+            target="0 0 0"
+            left="-5"
+            right="5"
+            bottom="-5"
+            top="5" />
+    </cameras> 
+
+    <!-- bloco de texturas. Este bloco tem de existir mas pode estar vazio, se nao forem usadas texturas --> 
+    <textures>
+        <texture id="grayPaintTex" filepath="layer-vehicles/textures/car.jpg"/>
+        <texture id="redPaintTex" filepath="layer-vehicles/textures/redPaint.jpg"/>
+        <texture id="yellowPaintTex" filepath="layer-vehicles/textures/yellowPaint.png"/>
+        <texture id="whitePaintTex" filepath="layer-vehicles/textures/whitePaint.png"/>
+        <texture id="bluePaintTex" filepath="layer-vehicles/textures/bluePaint.jpeg"/>
+        <texture id="wheelTex" filepath="layer-vehicles/textures/tire.jpg"/>
+        <texture id="outerRimTex" filepath="layer-vehicles/textures/outerrim.jpg"/>
+        <texture id="innerRimTex" filepath="layer-vehicles/textures/innerRimLogo.png"/>
+        <texture id="chevroletInnerRimTex" filepath="layer-vehicles/textures/chevy_logo.png"/>
+        <texture id="rimBladeTex" filepath="layer-vehicles/textures/rimBlade.jpg"/>
+        <texture id="glassTex" filepath="layer-vehicles/textures/glass.jpg"/>
+        <texture id="reboqueTex" filepath="layer-vehicles/textures/feup.jpg"/>
+        <texture id="cargoTex" filepath="layer-vehicles/textures/cargo.jpg"/>
+        <texture id="licenseTex" filepath="layer-vehicles/textures/plate.png"/>
+        <texture id="actrosTex" filepath="layer-vehicles/textures/car-logo.png"/>
+    </textures> 
+
+    <materials> 
+        <material id="actrosApp"
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            textureref= "actrosTex"
+            texlength_s="1" 
+            texlength_t="1"
+            shininess="30" 
+            shading = "flat" />
+        <material id="licenseplateApp"
+            color="1.0 1.0 1.0 1" 
+            emissive="0.0 0.0 0.0 1" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="licenseTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="redPaintApp"
+            color="1.0 1.0 1.0 1.0" 
+            emissive="0.0 0.0 0.0 1" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="redPaintTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="whitePaintApp"
+            color="1.0 1.0 1.0 1.0" 
+            emissive="0.0 0.0 0.0 1" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="whitePaintTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="grayPaintApp" 
+            emissive="0.0 0.0 0.0 1" 
+            color="1 1.0 1.0 1.0"  
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="grayPaintTex"
+            texlength_s="0.5" 
+            texlength_t="0.5"
+            shading = "flat" />
+        <material id="bluePaintApp"
+            color="1.0 1.0 1.0 1.0" 
+            emissive="0.0 0.0 0.0 1" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="bluePaintTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="blinkerApp"
+            color="0.84 0.42 0 1" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            shading = "flat" />
+        <material id="brakeApp"
+            color="1 0 0 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            shading = "flat" />
+        <material id="chevLogoApp"
+                    color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            textureref= "chevroletInnerRimTex"
+            texlength_s="1" 
+            texlength_t="1"
+            shininess="30" 
+            shading = "flat" />
+        <material id="yellowPaintApp" 
+            emissive="0.0 0.0 0.0 1" 
+            color="1.0 1.0 1.0 1.0"  
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="yellowPaintTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="wheelApp" 
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="wheelTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="outerRimApp" 
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="outerRimTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="innerRimApp" 
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="innerRimTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="frontLogoApp"
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            textureref= "innerRimTex"
+            texlength_s="1" 
+            texlength_t="1"
+            shininess="30" 
+            shading = "flat" />
+        <material id="rimBladeApp" 
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="rimBladeTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="glassApp" 
+            color="1 1 1 0.2" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="glassTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="reboqueApp" 
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="reboqueTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="cargoApp"
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="cargoTex" 
+            texlength_s="-1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="grillApp"
+            color="1 1 1 1.0" 
+            emissive="0.0 0.0 0.0 0.0" 
+            specular="0 0 0 0" 
+            shininess="30"
+            twosided="true"
+            textureref="wheelTex"
+            shading = "flat" />
+        <material id="antennaApp"
+            color="0 0 0 0" 
+            emissive="0.0 0.0 0.0 1" 
+            specular="0 0 0 0" 
+            shininess="30"
+            twosided="true"
+            shading = "flat" />
+
+    </materials> 
+
+    <graph rootid="scene"> 
+		
+		<node id="scene"> 
+            <children>
+                <noderef id="mercedes-actros"/>
+                <noderef id="mercedes-actros-blue"/>
+                <noderef id="mercedes-actros-yellow"/>
+                <noderef id="chevrolet-camaro"/>
+                <noderef id="chevrolet-camaro-red"/>
+                <noderef id="chevrolet-camaro-white"/>
+            </children> 
+        </node>
+
+        <node id="rectangle1"> 
+
+            <transforms>
+				<translate value3="0 0 -0.5" />
+				<rotate value3="0 180 0.0" />
+            </transforms> 
+			
+
+            <children>   
+                <primitive>          
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" />
+                </primitive> 
+            </children> 
+        </node>
+		
+		<node id="rectangle2"> 
+
+            <transforms>
+				<translate value3="0 0 0.5" />
+            </transforms> 
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle3"> 
+
+            <transforms>
+				<translate value3="0 -0.5 0" />
+				<rotate value3="90 0.0 0.0" />
+            </transforms> 
+
+            <children>   
+                <primitive>          
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle4"> 
+
+            <transforms>
+				<translate value3="0 0.5 0" />
+				<rotate value3="-90 0.0 0.0" />
+            </transforms> 
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle5"> 
+
+            <transforms>
+				<translate value3="-0.5 0 0" />
+				<rotate value3="0.0 -90 0.0" />
+            </transforms> 
+
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle6"> 
+            <transforms>
+				<translate value3="0.5 0 0" />
+				<rotate value3="0.0 90 0.0" />
+            </transforms> 
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+
+        <node id="rectangle7"> 
+        <materialref id="cargoApp" />
+            <children>
+                <noderef id="rectangle1" />
+            </children>
+        </node>
+        <node id="rectangle8"> 
+        <materialref id="cargoApp" />
+            <children>
+                <noderef id="rectangle2" />
+            </children>
+        </node>
+        <node id="rectangle9"> 
+        <materialref id="cargoApp" />
+            <children>
+                <noderef id="rectangle3" />
+            </children>
+        </node>
+        <node id="rectangle10"> 
+        <materialref id="cargoApp" />
+            <children>
+                <noderef id="rectangle4" />
+            </children>
+        </node>
+        <node id="rectangle11"> 
+            <materialref id="reboqueApp" />
+            <children>
+                <noderef id="rectangle5" />
+            </children>
+        </node>
+        <node id="rectangle12">             
+        <materialref id="reboqueApp" />
+            <children>
+                <noderef id="rectangle6" />
+            </children>
+        </node>
+
+		<node id="unitCube">
+            <children>            
+				<!-- Back -->
+                <noderef id="rectangle1" /> 
+				<!-- Front -->
+				<noderef id="rectangle2" /> 
+				<!-- Bottom -->
+				<noderef id="rectangle3" />
+				<!-- Top -->
+				<noderef id="rectangle4" />
+				<!-- Left -->			
+				<noderef id="rectangle5" />
+				 <!-- Right -->
+				<noderef id="rectangle6" />
+            </children>
+        </node>
+
+        <node id="cargo">
+            <children>            
+				<!-- Back -->
+                <noderef id="rectangle7" /> 
+				<!-- Front -->
+				<noderef id="rectangle8" /> 
+				<!-- Bottom -->
+				<noderef id="rectangle9" />
+				<!-- Top -->
+				<noderef id="rectangle10" />
+				<!-- Left -->			
+				<noderef id="rectangle11" />
+				 <!-- Right -->
+				<noderef id="rectangle12" />
+            </children>
+        </node>
+        <node id="innerRim">
+            <transforms>
+                <translate value3="0 -0.03 0"/>
+                <scale value3 = "0.75 1 0.75"/>
+            </transforms>
+            <materialref id="innerRimApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.2" top="0.2" height="0.05" slices="64" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="chev_innerRim">
+            <transforms>
+                <translate value3="0 -0.03 0"/>
+                <scale value3 = "0.75 1 0.75"/>
+            </transforms>
+            <materialref id="chevLogoApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.2" top="0.2" height="0.05" slices="64" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="outerRim">
+            <transforms>
+                <scale value3 = "0.95 1 0.95"/>
+            </transforms>
+            <materialref id="outerRimApp" />
+            <children>
+            <noderef id="rimBlades"/>
+            <noderef id="bladeConnector"/>
+                <primitive>
+                    <cylinder base="0.325" top="0.325" height="0.05" slices="64" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="bladeConnector">
+            <transforms>
+                <translate value3="0 0.03 0"/>
+            </transforms>
+            <materialref id="rimBladeApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.4" top="0.4" height="0.1" slices="64" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="rimBlade">
+            <transforms>
+                <translate value3 ="0.2 -0.021 0"/>
+                <scale value3="0.15 0.05 0.05" />
+            </transforms>
+            <materialref id="rimBladeApp" />
+            <children>
+                <primitive>
+                    <cylinder base="1" top="1" height="0.2" slices="6" stacks="2"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="rimBlade1">
+            <transforms>
+                <rotate value3="0 30 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade2">
+            <transforms>
+                <rotate value3="0 60 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade3">
+            <transforms>
+                <rotate value3="0 90 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade4">
+            <transforms>
+                <rotate value3="0 120 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade5">
+            <transforms>
+                <rotate value3="0 150 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade6">
+            <transforms>
+                <rotate value3="0 180 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade7">
+            <transforms>
+                <rotate value3="0 210 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade8">
+            <transforms>
+                <rotate value3="0 240 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade9">
+            <transforms>
+                <rotate value3="0 270 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade10">
+            <transforms>
+                <rotate value3="0 300 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade11">
+            <transforms>
+                <rotate value3="0 330 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlade12">
+            <transforms>
+                <rotate value3="0 360 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimBlade"/>
+            </children>
+        </node>
+        <node id="rimBlades">
+            <children>
+                <noderef id="rimBlade1"/>
+                <noderef id="rimBlade2"/>
+                <noderef id="rimBlade3"/>
+                <noderef id="rimBlade4"/>
+                <noderef id="rimBlade5"/>
+                <noderef id="rimBlade6"/>
+                <noderef id="rimBlade7"/>
+                <noderef id="rimBlade8"/>
+                <noderef id="rimBlade9"/>
+                <noderef id="rimBlade10"/>
+                <noderef id="rimBlade11"/>
+                <noderef id="rimBlade12"/>
+            </children>
+        </node>
+        <node id="rim">
+            <children>
+                <noderef id="innerRim"/>
+                <noderef id="outerRim"/>
+            </children>
+        </node>
+        <node id="chev_rim">
+            <children>
+                <noderef id="chev_innerRim"/>
+                <noderef id="outerRim"/>
+            </children>
+        </node>
+        <node id="rimLeft">
+            <transforms>
+                <translate value3 = "0 -0.2 0"/>
+            </transforms>
+            <children>
+                <noderef id="rim"/>
+            </children>
+        </node>
+        <node id="chev_rimLeft">
+            <transforms>
+                <translate value3 = "0 -0.2 0"/>
+            </transforms>
+            <children>
+                <noderef id="chev_rim"/>
+            </children>
+        </node>
+        <node id="chev_rimRight">
+            <transforms>
+                <rotate value3 = "180 0 0"/>
+            </transforms>
+            <children>
+                <noderef id="chev_rimLeft"/>
+            </children>
+        </node>
+        <node id="rimRight">
+            <transforms>
+                <rotate value3 = "180 0 0"/>
+            </transforms>
+            <children>
+                <noderef id="rimLeft"/>
+            </children>
+        </node>
+        <node id="wheel" >
+            <transforms>
+                <rotate value3="0 0 90"/>
+                <scale value3="0.4 0.3 0.4"/>
+            </transforms>
+            <materialref id="wheelApp" />
+
+            <children>
+                <noderef id="rimLeft"/>
+                <noderef id="rimRight"/>
+                <primitive>
+                    <cylinder base="0.4" top="0.4" height="0.4" slices="32" stacks="8" />
+                </primitive>
+            </children>
+        </node>
+
+        <node id="chev_wheel" >
+            <transforms>
+                <rotate value3="0 0 90"/>
+                <scale value3="0.4 0.3 0.4"/>
+            </transforms>
+            <materialref id="wheelApp" />
+
+            <children>
+                <noderef id="chev_rimLeft"/>
+                <noderef id="chev_rimRight"/>
+                <primitive>
+                    <cylinder base="0.4" top="0.4" height="0.4" slices="32" stacks="8" />
+                </primitive>
+            </children>
+        </node>
+        <node id="mercedes-actros-blue_wheelBL">
+            <transforms>
+                <translate value3="-0.5 -0.15 -0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros-blue_wheelBR">
+            <transforms>
+                <translate value3="0.5 -0.15 -0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros-blue_wheelFL">
+            <transforms>
+                <translate value3="-0.5 -0.15 0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros-blue_wheelFR">
+            <transforms>
+                <translate value3="0.5 -0.15 0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+        <node id="mercedes-actros-yellow_wheelBL">
+            <transforms>
+                <translate value3="-0.5 -0.15 -0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros-yellow_wheelBR">
+            <transforms>
+                <translate value3="0.5 -0.15 -0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros-yellow_wheelFL">
+            <transforms>
+                <translate value3="-0.5 -0.15 0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros-yellow_wheelFR">
+            <transforms>
+                <translate value3="0.5 -0.15 0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+        <node id="mercedes-actros_wheelBL">
+            <transforms>
+                <translate value3="-0.5 -0.15 -0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros_wheelBR">
+            <transforms>
+                <translate value3="0.5 -0.15 -0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros_wheelFL">
+            <transforms>
+                <translate value3="-0.5 -0.15 0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+
+        <node id="mercedes-actros_wheelFR">
+            <transforms>
+                <translate value3="0.5 -0.15 0.5"/>
+            </transforms>
+
+            <children>
+                <noderef id="wheel"/>
+            </children>
+        </node>
+        <node id="window">
+            <transforms>
+                <scale value3="0.5 1.2 0.01"/>
+            </transforms>
+            <materialref id= "glassApp"/>
+            <children>
+                <noderef id="rectangle2"/>
+            </children>
+        </node>
+        <node id="leftWindow">
+            <transforms>
+                <rotate value3="0 20 0"/>
+                <translate value3="0.035 1 0.62"/>
+            </transforms>
+            <children>
+                <noderef id="window"/>
+            </children>
+        </node>
+        <node id="rightWindow">
+            <transforms>
+                <rotate value3="0 -20 0"/>
+                <translate value3="-0.035 1 0.62"/>
+            </transforms>
+            <children>
+                <noderef id="window"/>
+            </children>
+        </node>
+        <node id="driver-booth">
+        <transforms>
+            <translate value3 = "0 2.2 0"/>
+            <scale value3 = "1 3.5 1"/>
+        </transforms>
+            <children>
+                <noderef id="frontWing"/>
+                <noderef id="glass-panes"/>
+            </children>
+        </node>
+        <node id="left-side-glass">
+            <transforms>
+                <translate value3="0.4935 0.47 0.91"/>
+                <rotate value3="0 90 0"/>
+                <scale value3 = "1 0.925 1"/>
+            </transforms>
+            <children>
+                <noderef id="window"/>
+            </children>
+        </node>
+        <node id="right-side-glass">
+            <transforms>
+                <translate value3="-0.4935 0.47 0.91"/>
+                <rotate value3="0 -90 0"/>
+                <scale value3 = "1 0.925 1"/>
+            </transforms>
+            <children>
+                <noderef id="window"/>
+            </children>
+        </node>
+        <node id="side-glasses">
+        <transforms>
+                <scale value3="1 0.375 0.465"/>
+            </transforms>
+            <children>
+                <noderef id="left-side-glass"/>
+                <noderef id="right-side-glass"/>
+            </children>
+        </node>
+        <node id="front-glasses">
+            <transforms>
+                <scale value3="1 0.35 0.8"/>
+                <translate value3="0 -0.5 0.165"/>
+            </transforms>
+            <children>
+                <noderef id="wind-shields"/>
+                <noderef id="leftWindow"/>
+                <noderef id="rightWindow"/>
+            </children>
+        </node>
+        <node id="glass-panes">
+            <children>
+                <noderef id="front-glasses"/>
+                <noderef id="side-glasses"/>
+            </children>
+        </node>
+        <node id="grill">
+            <transforms>
+            <rotate value3="0 -21.5 90"/>
+                <translate value3="0.5 0 0.62"/>
+                <scale value3="1 0.95 0.10"/>
+            </transforms>
+            <materialref id="grillApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.1" top="0.1" height="0.5" slices="32" stacks="32" capsclose="true"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="grill-mirror">
+            <transforms>
+                <scale value3="-1 1 1"/>
+            </transforms>
+            <children>
+                <noderef id="grill"/>
+            </children>
+        </node>
+        <node id="grill-mirror-1">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill-mirror"/>
+                    </children>
+                </node>
+        <node id="grill-mirror-2">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill-mirror-1"/>
+                    </children>
+                </node>
+<node id="grill-mirror-3">
+            <transforms>
+                <translate value3="0 0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-mirror-2"/>
+            </children>
+        </node>
+        <node id="grill-mirror-4">
+            <transforms>
+                <translate value3="0 0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-mirror-3"/>
+            </children>
+        </node>
+        <node id="grill-mirror-5">
+            <transforms>
+                <translate value3="0 0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-mirror-4"/>
+            </children>
+        </node>
+        <node id="grill-mirror-6">
+            <transforms>
+                <translate value3="0 0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-mirror-5"/>
+            </children>
+        </node>
+        <node id="grill-mirror-7">
+            <transforms>
+                <translate value3="0 0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-mirror-6"/>
+            </children>
+        </node>
+        <node id="grill1">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill"/>
+                    </children>
+                </node>
+                <node id="grill2">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill1"/>
+                    </children>
+                </node>
+                <node id="grill3">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill2"/>
+                    </children>
+                </node>
+                <node id="grill4">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill3"/>
+                    </children>
+                </node>
+                <node id="grill5">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill4"/>
+                    </children>
+                </node>
+                <node id="grill6">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill5"/>
+                    </children>
+                </node>
+                <node id="grill7">
+                    <transforms>
+                        <translate value3="0 0.15 0"/>
+                    </transforms>
+                    <children>
+                        <noderef id="grill6"/>
+                    </children>
+                </node>
+        <node id="grills">
+            <children>
+                <noderef id="grill"/>
+                <noderef id="grill1"/>
+                <noderef id="grill2"/>
+                <noderef id="grill3"/>
+                <noderef id="grill4"/>
+                <noderef id="grill5"/>
+                <noderef id="grill6"/>
+                <noderef id="grill7"/>
+                <noderef id="grill-mirror"/>
+                <noderef id="grill-mirror-1"/>
+                <noderef id="grill-mirror-2"/>
+                <noderef id="grill-mirror-3"/>
+                <noderef id="grill-mirror-4"/>
+                <noderef id="grill-mirror-5"/>
+                <noderef id="grill-mirror-6"/>
+                <noderef id="grill-mirror-7"/>
+            </children>
+        </node>
+        <node id="front-logo">
+            <transforms>
+                <rotate value3="90 0 0"/>
+                <rotate value3="0 -30 0"/>
+            </transforms>
+            
+            <children>
+                <primitive>
+                    <cylinder base="0.2" top="0.2" height="0.05" slices="64" stacks="8"/>
+                </primitive>
+            </children>      
+        </node>
+        <node id="mercedes-logo">
+            <transforms>
+                <translate value3="0 0.2 1.31"/>
+                <scale value3="0.4 0.4 0.4"/>
+            </transforms>
+            <materialref id="frontLogoApp" />
+            <children>
+                <noderef id="front-logo"/>
+            </children>
+        </node>
+ 
+        <node id="wind-shields">
+            <transforms>
+                <rotate value3="0 0 45"/>
+                <scale value3="0.2 1 0.2"/>
+                <translate value3="0 0 0.5"/>
+            </transforms>
+            <children>
+                <primitive> 
+                    <cylinder base="0.1" top="0.1" height="0.7" slices="64" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="brake-light">
+            <materialref id="brakeApp" />
+            <children>
+                <noderef id="unitCube"/>
+            </children>
+        </node>
+        <node id="blinker">
+            <transforms>
+            </transforms>
+            <materialref id="blinkerApp" />
+            <children>
+                <noderef id="unitCube"/>    
+            </children>
+        </node>
+        <node id="left-blinker">
+            <transforms>
+                <scale value3="0.06 0.30 0.05"/>
+                <translate value3="-7.2 -0.5 -10"/>
+            </transforms>
+            <children>
+                <noderef id="blinker"/>
+            </children>
+        </node>
+        <node id="right-blinker">
+            <transforms>
+                <scale value3="0.06 0.30 0.05"/>
+                <translate value3="7.2 -0.5 -10"/>
+            </transforms>
+            <children>
+                <noderef id="blinker"/>
+            </children>
+        </node>
+
+        
+        <node id="back-blinkers">
+            <children>
+                <noderef id="blinkers"/>
+            </children>
+        </node>
+        <node id="left-front-blinker">
+            <transforms>
+                <scale value3="0.05 0.1 0.05"/>
+                <translate value3="8.5 -3 10.8"/>
+                <rotate value3="0 23 0"/>
+            </transforms>
+            <materialref id="blinkerApp" />
+            <children>
+                <primitive>
+                    <rectangle xy1="-1 -1" xy2="1 1"/>
+                </primitive>
+            </children>
+        </node>
+                <node id="right-front-blinker">
+            <transforms>
+                <scale value3="0.05 0.1 0.05"/>
+                <translate value3="-8.5 -3 10.8"/>
+                <rotate value3="0 -23 0"/>
+            </transforms>
+            <materialref id="blinkerApp" />
+            <children>
+                <primitive>
+                    <rectangle xy1="-1 -1" xy2="1 1"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="front-blinkers">
+            <children>
+                <noderef id="left-front-blinker"/>
+                <noderef id="right-front-blinker"/>
+            </children>
+        </node>
+        <spotlight id="headlightSpot" 
+            enabled="true" 
+            color="1 1 1 1" 
+            intensity = "300"
+            angle="30"
+            position="0 0 0"
+            target="0 0 1"
+            />
+        <node id="head-light">
+            <materialref id="glassApp" />
+            <children>
+                <noderef id="headlightSpot"/>
+                <primitive>
+                    <rectangle xy1="-1 -1" xy2="1 1"/>
+                </primitive>
+            </children>
+        </node>     
+        <node id="left-head-light">
+            <transforms>
+                <scale value3="0.05 0.1 0.05"/>
+                <translate value3="-6.5 -3 11.3075"/>
+                <rotate value3="0 -23 0"/>
+            </transforms>
+            <children>
+                <noderef id="head-light"/>
+            </children>
+        </node>
+        <node id="right-head-light">
+            <transforms>
+                <scale value3="0.05 0.1 0.05"/>
+                <translate value3="6.5 -3 11.3075"/>
+                <rotate value3="0 23 0"/>
+            </transforms>
+            <children>
+                <noderef id="head-light"/>
+            </children>
+        </node>
+        <node id="head-lights">
+            <children>
+                <noderef id="left-head-light"/>
+                <noderef id="right-head-light"/>
+            </children>
+        </node>
+
+
+        <node id="blinkers">
+            <children>
+                <noderef id="right-blinker"/>
+                <noderef id="left-blinker"/>
+            </children>
+        </node>
+        <node id="left-brake-light">
+            <transforms>
+                <scale value3="0.08 0.30 0.05"/>
+                <translate value3="-4.5 -0.5 -10"/>
+            </transforms>
+            <children>
+                <noderef id="brake-light"/>
+            </children>
+        </node>
+        <node id="right-brake-light">
+            <transforms>
+                <scale value3="0.08 0.30 0.05"/>
+                <translate value3="4.5 -0.5 -10"/>
+            </transforms>
+            <children>
+                <noderef id="brake-light"/>
+            </children>
+        </node>
+        <node id="brake-lights">
+            <children>
+                <noderef id="right-brake-light"/>
+                <noderef id="left-brake-light"/>
+            </children>
+        </node>
+        <node id="antenna-stick">
+
+            <children>
+                <primitive>
+                    <cylinder base="0.005" top="0.005" height="0.5" slices="64" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="antenna-base">
+            <transforms>
+                <translate value3="0 -0.25 0"/>
+            </transforms>
+            <children>
+                <primitive>
+                    <sphere radius="0.015" slices="32" stacks="32"  />
+                </primitive>
+            </children>
+        </node>
+        <node id="antenna">
+                    <transforms>
+                <translate value3="0 4.2 0.6"/>
+            </transforms>
+                        <materialref id="antennaApp"/>
+
+            <children>
+                <noderef id="antenna-stick"/>
+                <noderef id="antenna-base"/>
+            </children>
+        </node>
+        <node id="back-lights">
+            <children>
+                <noderef id="back-blinkers"/>
+                <noderef id="brake-lights"/>
+            </children>
+        </node>
+        <node id="front-lights">
+            <children>
+                <noderef id="front-blinkers"/>
+                <noderef id="head-lights"/>
+            </children>
+        </node>
+        <node id="lights">
+            <children>
+                <noderef id="front-lights"/>
+                <noderef id="back-lights"/>
+            </children>
+        </node>
+        <node id="license-plate">
+            <transforms>
+                <scale value3="-0.25 0.35 -0.05"/>
+                <translate value3="0 0 10.2"/>
+            </transforms>
+            <materialref id="licenseplateApp" />
+            <children>
+                <primitive>
+                    <rectangle xy1="-1 -1" xy2="1 1"/>
+                </primitive>
+            </children>
+            </node>
+
+        <node id="actros">
+            <transforms>
+                <scale value3="0.1 0.25 0.1"/>
+                <translate value3="-3.7 0.95 -5.05"/>
+                <rotate value3="0 180 0"/> 
+            </transforms>
+            <materialref id="actrosApp"/>
+            <children>
+                <primitive>
+                    <rectangle xy1="-1 -1" xy2="1 1"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="exterior">
+            <children> 
+                <noderef id="actros"/>
+                <noderef id="antenna"/>
+                <noderef id="license-plate"/>
+                <noderef id="lights"/>
+                <noderef id="grills"/>
+                <noderef id="reboque"/>
+                <noderef id="driver-booth"/>
+            </children>
+        </node>
+        <node id="frontWing">
+            <transforms>
+                <scale value3="1.149 1 0.5"/>
+                <translate value3="0 -0.001 0.7825"/>
+            </transforms>
+            <children>
+                <primitive>
+                    <cylinder top="0.5" base="0.5" height="1" slices="6" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="chassis" castshadows="true" receiveshadows="true">
+            <transforms>
+                <translate value3="0 0 0.025"/>
+                <scale value3="1.1 0.25 2"/>
+                
+            </transforms>
+
+            <children>    
+                <noderef id="exterior"/>         
+            	<noderef id="frontWing"/>         
+				<noderef id="unitCube"/>
+            </children> 
+        </node>
+        <node id="reboque">
+            <transforms>
+                <scale value3="0.9 3.25 0.7"/>
+                <translate value3="0 0.6 -0.175"/>
+            </transforms>
+            <children>
+                <noderef id="cargo"/>
+            </children>
+        </node>
+        <node id="chevrolet-camaro-white_wheelBL">
+            <transforms>
+                <translate value3="-0.4 -0.15 -0.75"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro-white_wheelBR">
+            <transforms>
+                <translate value3="0.4 -0.15 -0.75"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro-white_wheelFL">
+            <transforms>
+                <translate value3="-0.4 -0.15 0.6"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro-white_wheelFR">
+            <transforms>
+                <translate value3="0.4 -0.15 0.6"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+        <node id="chevrolet-camaro-red_wheelBL">
+            <transforms>
+                <translate value3="-0.4 -0.15 -0.75"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro-red_wheelBR">
+            <transforms>
+                <translate value3="0.4 -0.15 -0.75"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro-red_wheelFL">
+            <transforms>
+                <translate value3="-0.4 -0.15 0.6"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro-red_wheelFR">
+            <transforms>
+                <translate value3="0.4 -0.15 0.6"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+        <node id="chevrolet-camaro_wheelBL">
+            <transforms>
+                <translate value3="-0.4 -0.15 -0.75"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro_wheelBR">
+            <transforms>
+                <translate value3="0.4 -0.15 -0.75"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro_wheelFL">
+            <transforms>
+                <translate value3="-0.4 -0.15 0.6"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-camaro_wheelFR">
+            <transforms>
+                <translate value3="0.4 -0.15 0.6"/>
+            </transforms>
+
+            <children>
+                <noderef id="chev_wheel"/>
+            </children>
+        </node>
+        <node id="bread_loaf_bottom">
+            <transforms>
+                <scale value3="1.4 0.4 2.6"/>
+                <translate value3="0 0.4 0"/>
+            </transforms>
+            <children>
+                <noderef id="unitCube"/>
+            </children>
+        </node>
+        <node id="bread_loaf_top">
+            <transforms>
+                <scale value3="1.4 0.36 1.3"/>
+                <translate value3="0 1.3 0"/>
+            </transforms>
+            <children>
+                <noderef id="unitCube"/>
+            </children>
+        </node>
+        <node id="connector_front">
+            <transforms>
+                <rotate value3="0 0 90"/>
+                <scale value3="2 13.99 1"/>
+                <translate value3="0.15 0 0.75"/>
+            </transforms>
+            <materialref id="glassApp"/>
+            <children>
+                <primitive>
+                    <cylinder base="0.2" top="0.2" height="0.1" slices="3" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="connector_back">
+            <transforms>
+                <rotate value3="0 0 90"/>
+                <scale value3="2 13.99 -1"/>
+                <translate value3="0.15 0 0.75"/>
+            </transforms>
+            <materialref id="glassApp"/>
+            <children>
+                <primitive>
+                    <cylinder base="0.2" top="0.2" height="0.1" slices="3" stacks="8"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="grill-pipe">
+            <transforms>
+                <scale value3="2 1 1"/>
+                <rotate value3="0 0 90"/>
+                <translate value3="0.15 0 -1.3"/>
+            </transforms>
+            <materialref id="grillApp" />
+            <children>
+                <primitive>
+                    <cylinder base="0.035" top="0.035" height="0.69" slices="32" stacks="32"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="grill-pipe1">
+            <children>
+                <noderef id="grill-pipe"/>
+            </children>
+        </node>
+        <node id="grill-pipe2">
+            <transforms>
+                <translate value3="0 0.075 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-pipe"/>
+            </children>
+        </node>
+        <node id="grill-pipe3">
+            <transforms>
+                <translate value3="0 0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-pipe"/>
+            </children>
+        </node>
+        <node id="grill-pipe4">
+            <transforms>
+                <translate value3="0 -0.075 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-pipe"/>
+            </children>
+        </node>
+        <node id="grill-pipe5">
+            <transforms>
+                <translate value3="0 -0.15 0"/>
+            </transforms>
+            <children>
+                <noderef id="grill-pipe"/>
+            </children>
+        </node>
+
+        <node id="chevrolet-grill">
+            <children>
+                <noderef id="grill-pipe1"/>
+                <noderef id="grill-pipe2"/>
+                <noderef id="grill-pipe3"/>
+                <noderef id="grill-pipe4"/>
+                <noderef id="grill-pipe5"/>
+            </children>
+        </node>
+        <node id="chevrolet-body">
+        <transforms>
+            <scale value3="0.7 1 0.8"/>
+            <translate value3="0 0 -0.125"/>
+        </transforms>
+            <children>
+                <noderef id="bread_loaf_bottom"/>
+                <noderef id="bread_loaf_top"/>
+                <noderef id="connector_front"/>
+                <noderef id="connector_back"/>
+                <noderef id="chevrolet-grill"/>
+            </children>
+        </node>
+        <node id="chevrolet-back-lights">
+            <transforms>
+                <scale value3="1 0.3 1"/>
+                <translate value3="0 0.4 1.45"/>
+            </transforms>
+            <children>
+                <noderef id="back-lights"/>
+            </children>
+        </node>
+        <node id="chevrolet-license-plate">
+            <transforms>
+                <scale value3="-1 0.2 -1"/>
+                <translate value3="0 0.4 -0.44"/>
+            </transforms>
+            <children>
+                <noderef id="license-plate"/>
+            </children>
+        </node>
+        <node id="chevrolet-camaro" raio="1" maxSpeed="2" acceleration="0.4" deceleration="0.05">
+            <transforms>
+                <translate value3="0 0.3 0"/>
+            </transforms>
+
+            <materialref id="grayPaintApp" />
+
+            <children>        
+                <noderef id="chevrolet-body"/>
+                <noderef id="chevrolet-camaro_wheelFL" />
+                <noderef id="chevrolet-camaro_wheelFR" />
+                <noderef id="chevrolet-camaro_wheelBL" />
+                <noderef id="chevrolet-camaro_wheelBR" />
+                <noderef id="chevrolet-license-plate"/>
+                <noderef id="chevrolet-back-lights"/>
+            </children> 
+        </node>
+
+        <node id="chevrolet-camaro-white" raio="1" maxSpeed="2" acceleration="0.4" deceleration="0.05">
+            <transforms>
+                <translate value3="0 0.3 0"/>
+            </transforms>
+
+            <materialref id="whitePaintApp" />
+
+            <children>        
+                <noderef id="chevrolet-body"/>
+                <noderef id="chevrolet-camaro-white_wheelFL" />
+                <noderef id="chevrolet-camaro-white_wheelFR" />
+                <noderef id="chevrolet-camaro-white_wheelBL" />
+                <noderef id="chevrolet-camaro-white_wheelBR" />
+                <noderef id="chevrolet-license-plate"/>
+                <noderef id="chevrolet-back-lights"/>
+            </children> 
+        </node>
+
+        <node id="chevrolet-camaro-red" raio="1" maxSpeed="2" acceleration="0.4" deceleration="0.05">
+            <transforms>
+                <translate value3="0 0.3 0"/>
+            </transforms>
+            
+            <materialref id="redPaintApp" />
+
+            <children>        
+                <noderef id="chevrolet-body"/>
+                <noderef id="chevrolet-camaro-red_wheelFL" />
+                <noderef id="chevrolet-camaro-red_wheelFR" />
+                <noderef id="chevrolet-camaro-red_wheelBL" />
+                <noderef id="chevrolet-camaro-red_wheelBR" />
+                <noderef id="chevrolet-license-plate"/>
+                <noderef id="chevrolet-back-lights"/>
+            </children> 
+        </node>
+
+        <node id="mercedes-actros-blue" raio="1" maxSpeed="2" acceleration="0.4" deceleration="0.05">
+            <transforms>
+                <scale value3="-0.75 0.75 -0.75"/>
+                <translate value3="0 0.3 0" />
+            </transforms>
+            <materialref id="bluePaintApp" />
+
+            <children>             
+                <noderef id="mercedes-logo"/>
+				<noderef id="chassis" />
+                <noderef id="mercedes-actros-blue_wheelFL" />
+                <noderef id="mercedes-actros-blue_wheelFR" />
+                <noderef id="mercedes-actros-blue_wheelBL" />
+                <noderef id="mercedes-actros-blue_wheelBR" />
+            </children> 
+        </node>
+
+        <node id="mercedes-actros-yellow" raio="1" maxSpeed="2" acceleration="0.4" deceleration="0.05">
+            <transforms>
+                <scale value3="-0.75 0.75 -0.75"/>
+                <translate value3="0 0.3 0" />
+            </transforms>
+            <materialref id="yellowPaintApp" />
+
+            <children>             
+                <noderef id="mercedes-logo"/>
+				<noderef id="chassis" />
+                <noderef id="mercedes-actros-yellow_wheelFL" />
+                <noderef id="mercedes-actros-yellow_wheelFR" />
+                <noderef id="mercedes-actros-yellow_wheelBL" />
+                <noderef id="mercedes-actros-yellow_wheelBR" />
+            </children> 
+        </node>
+
+        <node id="mercedes-actros" raio="1" maxSpeed="2" acceleration="0.4" deceleration="0.05">
+            <transforms>
+                <scale value3="-0.75 0.75 -0.75"/> 
+                <translate value3="0 0.3 0" />
+            </transforms>
+            <materialref id="grayPaintApp" />
+
+            <children>             
+                <noderef id="mercedes-logo"/>
+				<noderef id="chassis" />
+                <noderef id="mercedes-actros_wheelFL" />
+                <noderef id="mercedes-actros_wheelFR" />
+                <noderef id="mercedes-actros_wheelBL" />
+                <noderef id="mercedes-actros_wheelBR" />
+            </children> 
+        </node>
+    </graph> 
+</yaf> 

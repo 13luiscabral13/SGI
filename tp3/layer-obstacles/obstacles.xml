@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<yaf> 
+
+	<!-- Credits of the original file go to Group 1, class 1 of course LAIG school year 2013/2014, FEUP, University of Porto -->
+	
+    <globals background="0 0 0 1" ambient="00 00 00 1" /> 
+
+    <fog color="1.0 1.0 1.0 1.0" near="0.0" far="100.0" />
+
+    <cameras initial="cam1" > 
+        <perspective id="cam1" 
+            angle="60" 
+            near="0.1" 
+            far="1000" 
+            location="15 15 15" 
+            target="0 0.0 0" /> 
+
+        <orthogonal id="cam2"
+            near="-50"
+            far="100"
+            location="0 0 20"
+            target="0 0 0"
+            left="-5"
+            right="5"
+            bottom="-5"
+            top="5" />
+    </cameras> 
+
+    <!-- bloco de texturas. Este bloco tem de existir mas pode estar vazio, se nao forem usadas texturas --> 
+    <textures>
+        <texture id="oilSpillTex" filepath="layer-obstacles/textures/oil.jpg"/>
+        <texture id="bumpTex" filepath="layer-obstacles/textures/bump.png"/>
+        <texture id="tireTex" filepath="layer-obstacles/textures/tire.jpg"/>
+        <texture id="gravelTex" filepath="layer-obstacles/textures/gravel.jpg"/>
+    </textures> 
+    
+
+    <materials> 
+        <material id="oilSpillApp" 
+            emissive="0 0 0 0" 
+            color="1.0 1.0 1.0 1.0"  
+            specular="0 0 0 0" 
+            shininess="30" 
+            textureref="oilSpillTex" 
+            texlength_s="1" 
+            texlength_t="1"
+            shading = "flat" />
+        <material id="bumpApp" 
+            emissive="0 0 0 0" 
+            color="1.0 1.0 1.0 1.0"  
+            specular="0 0 0 0" 
+            shininess="0" 
+            textureref="bumpTex" 
+            texlength_s="0.5" 
+            texlength_t="0.5"
+            shading = "flat" />
+        <material id="tireApp" 
+            emissive="0 0 0 0" 
+            color="1.0 1.0 1.0 1.0"  
+            specular="0 0 0 0" 
+            shininess="0" 
+            textureref="tireTex" 
+            texlength_s="0.5" 
+            texlength_t="0.5"
+            shading = "flat" />
+        <material id="gravelApp"
+           emissive="0 0 0 0" 
+            color="0 0 0 0"  
+            specular="0 0 0 0" 
+            shininess="0" 
+            textureref="gravelTex" 
+            texlength_s="0.5" 
+            texlength_t="0.5"
+            shading = "flat" />
+    </materials> 
+
+    <graph rootid="scene"> 
+		
+		<node id="scene"> 
+            <children> 
+                <noderef id="oil_spill" /> 
+                <noderef id="tires" />
+                <noderef id="spikes"/>
+            </children> 
+        </node>
+        <node id="rectangle1"> 
+
+            <transforms>
+				<translate value3="0 0 -0.5" />
+				<rotate value3="0 180 0.0" />
+            </transforms> 
+			
+
+            <children>   
+                <primitive>          
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" />
+                </primitive> 
+            </children> 
+        </node>
+		
+		<node id="rectangle2"> 
+
+            <transforms>
+				<translate value3="0 0 0.5" />
+            </transforms> 
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle3"> 
+
+            <transforms>
+				<translate value3="0 -0.5 0" />
+				<rotate value3="90 0.0 0.0" />
+            </transforms> 
+
+            <children>   
+                <primitive>          
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle4"> 
+
+            <transforms>
+				<translate value3="0 0.5 0" />
+				<rotate value3="-90 0.0 0.0" />
+            </transforms> 
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle5"> 
+
+            <transforms>
+				<translate value3="-0.5 0 0" />
+				<rotate value3="0.0 -90 0.0" />
+            </transforms> 
+
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+		
+		<node id="rectangle6"> 
+            <transforms>
+				<translate value3="0.5 0 0" />
+				<rotate value3="0.0 90 0.0" />
+            </transforms> 
+
+
+            <children>             
+                <primitive>
+                    <rectangle xy1="-0.5 -0.5" xy2="0.5 0.5" /> 
+                </primitive>
+            </children> 
+        </node>
+
+        <node id="unitCube">
+            <children>            
+				<!-- Back -->
+                <noderef id="rectangle1" /> 
+				<!-- Front -->
+				<noderef id="rectangle2" /> 
+				<!-- Bottom -->
+				<noderef id="rectangle3" />
+				<!-- Top -->
+				<noderef id="rectangle4" />
+				<!-- Left -->			
+				<noderef id="rectangle5" />
+				 <!-- Right -->
+				<noderef id="rectangle6" />
+            </children>
+        </node>
+        <node id="big_spill">
+            <children>
+                <primitive>           
+                    <polygon radius="0.7" slices="2" stacks="9" color_c="0 0 0 0" color_p="0 0 0 0"/>
+                </primitive>
+            </children>
+        </node>   
+        <node id="small_spills_3">
+            <transforms>
+                <translate value3="0.7 0.1 0.001"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <polygon radius="0.2" slices="2" stacks="8" color_c="0 0 0 0" color_p="0 0 0 0"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="small_spills_2">
+            <transforms>
+                <translate value3="-0.9 0.5 0.0015"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <polygon radius="0.3" slices="2" stacks="8" color_c="0 0 0 0" color_p="0 0 0 0"/>
+                </primitive>
+            </children>
+        </node>          
+        <node id="small_spills_1">
+            <transforms>
+                <translate value3="-0.7 0 0.001"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <polygon radius="0.5" slices="2" stacks="8" color_c="0 0 0 0" color_p="0 0 0 0"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="oil_spill" raio="1">
+            <transforms>
+                <translate value3="0 0.42 0"/>
+                <rotate value3= "90 0 0"/>
+            </transforms>
+            <materialref id="oilSpillApp" />
+            <children>
+                <noderef id="big_spill"/>
+                <noderef id="small_spills_1"/>
+                <noderef id="small_spills_2"/>
+                <noderef id="small_spills_3"/>
+            </children> 
+        </node>
+
+        <node id ="tire1">
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>        
+        <node id ="tire2">
+            <transforms>
+                <translate value3="0 0.25 0"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire3">
+            <transforms>
+                <translate value3="0 0.5 0"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire4">
+            <transforms>
+                <translate value3="0 0.75 0"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire5">
+            <transforms>
+                <translate value3="0 0 0.7"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire6">
+            <transforms>
+                <translate value3="0 0.25 0.7"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire7">
+            <transforms>
+                <translate value3="0 0.5 0.7"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire8">
+            <transforms>
+                <translate value3="0 0.25 -0.7"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+        <node id ="tire9">
+            <transforms>
+                <translate value3="0 0 -0.7"/>
+            </transforms>
+            <children>
+                <primitive>           
+                    <cylinder base="0.35" top="0.35" height="0.25" slices="32" stacks="32" />
+                </primitive>
+            </children>
+        </node>
+
+        <node id="tires" raio="0.6" castshadow="true">
+            <transforms>
+                <translate value3="0 0.5 0"/>
+                <scale value3="0.6 0.6 0.6"/>
+            </transforms>
+            <materialref id="tireApp" />
+            <children>
+                <noderef id="tire1" />
+                <noderef id="tire2" />
+                <noderef id="tire3" />
+                <noderef id="tire4" />
+                <noderef id="tire5" />
+                <noderef id="tire6" />
+                <noderef id="tire7" />
+                <noderef id="tire8" />
+                <noderef id="tire9" />
+            </children>
+        </node>
+        <node id="rock1">
+            <children>
+            <noderef id="rock"/>
+            </children>
+        </node>
+        <node id="rock2">
+            <transforms>
+                <translate value3="0.15 0 0.15"/>
+            </transforms>
+            <children>
+            <noderef id="rock"/>
+            </children>
+        </node>
+        <node id="rock3">
+            <transforms>
+                <translate value3="0 0 0.2"/>
+            </transforms>
+            <children>
+            <noderef id="rock"/>
+            </children>
+        </node>
+        <node id ="rock4">
+            <transforms>
+                <translate value3="0.15 0 0"/>
+            </transforms>
+            <children>
+            <noderef id="rock"/>
+            </children>
+        </node>
+        <node id="rock5">
+            <transforms>
+                <translate value3="0.3 0 0.2"/>
+            </transforms>
+            <children>
+            <noderef id="rock"/>
+            </children>
+        </node>
+        <node id="rock">
+            <children>
+                <primitive>
+                    <polygon radius="0.06" slices="5" stacks="2" color_c="0 0 0 0" color_p="0 0 0 0"/>
+                </primitive>
+            </children>
+        </node>
+        <node id="spikes1">
+            <children>
+                <noderef id="rock1"/>
+                <noderef id="rock2"/>
+                <noderef id="rock3"/>
+                <noderef id="rock4"/>
+                <noderef id="rock5"/>
+            </children>
+        </node>
+        <node id="spikes2">
+        <transforms>
+            <translate value3="-0.35 0 0.1"/>
+            <rotate value3="0 90 0"/>
+        </transforms>
+            <children>
+                <noderef id="spikes1"/>
+            </children>
+        </node>
+        <node id="spikes3">
+        <transforms>
+            <translate value3="0.05 0 -0.15"/>
+            <rotate value3="0 90 0"/>
+        </transforms>
+            <children>
+                <noderef id="spikes1"/>
+            </children>
+        </node>
+        <node id="spikes4">
+        <transforms>
+            <translate value3="-0.3 0 -0.35"/>
+            <rotate value3="0 90 0"/>
+        </transforms>
+            <children>
+                <noderef id="spikes1"/>
+            </children>
+        </node>
+        <node id="spikes5">
+        <transforms>
+            <translate value3="0.4 0 -0.1"/>
+            <rotate value3="0 90 0"/>
+        </transforms>
+            <children>
+                <noderef id="spikes1"/>
+            </children>
+        </node>
+        <node id="spikes" raio="0.7">
+            <transforms>
+                <translate value3="0 0.4 0"/>
+                <rotate value3="0 90 0"/>
+            </transforms>
+            <materialref id="gravelApp" />
+            <children>
+                <noderef id="spikes1"/>
+                <noderef id="spikes2"/>
+                <noderef id="spikes3"/>
+                <noderef id="spikes4"/>
+                <noderef id="spikes5"/>
+            </children>
+        </node>
+    </graph> 
+</yaf> 
